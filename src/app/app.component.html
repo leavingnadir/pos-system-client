@@ -1,2 +1,2 @@
-<app-loading *ngIf="statusService.status.value | async"></app-loading>
+<app-loading *ngIf="(statusService.status | async)"></app-loading>
 <router-outlet/>

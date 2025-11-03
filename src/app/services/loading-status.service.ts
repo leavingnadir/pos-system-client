@@ -1,12 +1,23 @@
-import {Injectable} from '@angular/core';
+import {Injectable, OnDestroy, NgZone} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class LoadingStatusService {
-  public status: BehaviorSubject<any> = new BehaviorSubject(false);
+export class LoadingStatusService implements OnDestroy {
+  public status = new BehaviorSubject<boolean>(false);
 
-  constructor() {
+  constructor(private ngZone: NgZone) {}
+
+  setLoading(isLoading: boolean) {
+    this.ngZone.run(() => {
+      setTimeout(() => {
+        this.status.next(isLoading);
+      });
+    });
+  }
+
+  ngOnDestroy() {
+    this.status.complete();
   }
 }
