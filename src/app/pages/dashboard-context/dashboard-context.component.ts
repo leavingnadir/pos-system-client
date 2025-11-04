@@ -8,6 +8,7 @@ import {MatDivider} from '@angular/material/divider';
 
 @Component({
   selector: 'app-dashboard-context',
+  standalone: true,
   imports: [
     RouterOutlet,
     MatIcon,

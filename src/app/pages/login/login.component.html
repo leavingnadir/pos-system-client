@@ -1,24 +1,58 @@
-<div class="context">
-  <div class="wrapper">
-    <h4>Login</h4>
-    <hr>
-    <form [formGroup]="form" (ngSubmit)="login()">
-      <mat-form-field class="full-width" appearance="outline">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<div class="login-container">
+  <div class="login-card mat-elevation-z6">
+    <div class="login-header">
+      <h2>Hello There!</h2>
+      <p>Please Login to continue</p>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="login()" class="login-form">
+      <mat-form-field appearance="outline" class="full-width">
         <mat-label>Email</mat-label>
-        <input formControlName="email"  type="email" matInput
-               placeholder="Ex. pat@example.com">
+        <input
+          formControlName="email"
+          type="email"
+          matInput
+          placeholder="example@mail.com"
+        />
+        <mat-icon matSuffix>email</mat-icon>
       </mat-form-field>
 
-      <mat-form-field class="full-width" appearance="outline">
+      <mat-form-field appearance="outline" class="full-width">
         <mat-label>Password</mat-label>
-        <input formControlName="password"  type="password" matInput
-               placeholder="Ex. 1234">
+        <input
+          formControlName="password"
+          type="password"
+          matInput
+          placeholder="Enter your password"
+        />
+        <mat-icon matSuffix>lock</mat-icon>
       </mat-form-field>
 
-      <button type="submit" [disabled]="form.invalid" class="col-12" mat-button="filled">Login User</button>
-        <p style="text-align: center">OR</p>
-      <button type="button" routerLink="/signup" class="col-12" mat-button="filled">Signup User</button>
+      <button
+        mat-flat-button
+        color="primary"
+        type="submit"
+        [disabled]="form.invalid"
+        class="action-btn"
+      >
+        Login
+      </button>
 
+      <div class="divider">
+        <span>OR</span>
+      </div>
+
+      <button
+        mat-stroked-button
+        color="accent"
+        type="button"
+        routerLink="/signup"
+        class="action-btn"
+      >
+        Create an Account
+      </button>
     </form>
   </div>
 </div>

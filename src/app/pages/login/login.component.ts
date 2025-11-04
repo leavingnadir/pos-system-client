@@ -6,16 +6,19 @@ import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/
 import {AuthService} from '../../services/auth.service';
 import {CookieManagerService} from '../../services/cookie-manager.service';
 import {Router, RouterLink} from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-login',
+  standalone: true,
   imports: [
     MatFormField,
     MatLabel,
     MatInput,
     MatButton,
     ReactiveFormsModule,
-    RouterLink
+    RouterLink,
+    MatIconModule
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'

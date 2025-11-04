@@ -9,23 +9,24 @@ export const httpManagerInterceptor: HttpInterceptorFn = (req, next) => {
   let statusService:LoadingStatusService = inject(LoadingStatusService);
   const cookieManager = inject(CookieManagerService);
   const token = cookieManager.getToken('token');
+
+  // show global loading indicator for every outgoing request
   statusService.status.next(true);
 
-  if (token) {
-    const clonedRequest = req.clone({
-      setHeaders: {
-        Authorization: `Bearer ${token}`
-      }
-    });
-    return next(clonedRequest);
-  }
+  // attach token if present
+  const requestToSend = token ? req.clone({
+    setHeaders: {
+      Authorization: `Bearer ${token}`
+    }
+  }) : req;
 
-  return next(req).pipe(
+  return next(requestToSend).pipe(
     catchError((error:HttpErrorResponse)=>{
-      // catch errors
+      // rethrow the error after any custom handling
       return throwError(()=>error)
     }),
     finalize(()=>{
+      // hide loading indicator when request completes (success or error)
       statusService.status.next(false);
     })
   )

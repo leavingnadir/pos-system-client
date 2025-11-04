@@ -24,6 +24,7 @@ import {MatInput} from '@angular/material/input';
 
 @Component({
   selector: 'app-dashboard-customer-page',
+  standalone: true,
   imports: [
     MatCard,
     MatButton,

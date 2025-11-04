@@ -16,6 +16,7 @@ import {MatButton} from '@angular/material/button';
 
 @Component({
   selector: 'app-customer-dialog',
+  standalone: true,
   imports: [
     MatDialogTitle,
     MatDialogContent,
